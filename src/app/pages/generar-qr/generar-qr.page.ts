@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ToastController } from '@ionic/angular';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 
 @Component({
@@ -14,12 +15,14 @@ export class GenerarQRPage implements OnInit {
   elementType: 'url' | 'img' | 'canvas'= 'canvas';
   
   
-  constructor(private barcodeScanner : BarcodeScanner, 
+  constructor(private barcodeScanner : BarcodeScanner,
+              private toastCtrl: ToastController, 
               private base64ToGallery : Base64ToGallery) { }
+
+
   ngOnInit() {
   }
   
   scanerCode(){
-
   }
 }

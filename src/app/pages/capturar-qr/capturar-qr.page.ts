@@ -19,7 +19,7 @@ export class CapturarQrPage implements OnInit {
   }
   scanner() {
     this.barcodeScan.scan().then(barcodeData => {
-      this.presentar(barcodeData);
+      this.presentar(barcodeData.text);
     });
   }
   async presentar(mensaje: any) {
