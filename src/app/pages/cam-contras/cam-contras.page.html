@@ -9,9 +9,11 @@
 
 <ion-content>
   <div style="padding: 10px;">
-    <ion-button fill="clear" size="small" routerLink="/home"><ion-icon name="arrow-back-outline"></ion-icon>Volver</ion-button>
+    <ion-button fill="clear" size="small" routerLink="/home">
+      <ion-icon name="arrow-back-outline"></ion-icon>Volver
+    </ion-button>
   </div>
-  
+
   <ion-card>
     <ion-card-header>
       <ion-card-title style="text-align: center;">Cambio de contraseña</ion-card-title>
@@ -28,12 +30,12 @@
         <ion-label position="floating">Nueva contraseña</ion-label>
         <ion-input type="password" [(ngModel)]="pass"></ion-input>
       </ion-item>
-
-      <ion-item lines="none" style="padding-top: 30px;">
-        <ion-button slot="end" size="medium" (click)="validar()">Recuperar contraseña</ion-button>
-      </ion-item>
       
+      <ion-item lines="none" style="padding-top: 30px;">
+        <ion-button slot="end" size="medium" (click)="validar()">Cambiar contraseña</ion-button>
+      </ion-item>
+
     </ion-card-content>
   </ion-card>
-    
+
 </ion-content>
