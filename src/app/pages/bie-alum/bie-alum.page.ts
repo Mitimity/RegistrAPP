@@ -7,6 +7,11 @@ import { ApiService } from 'src/app/api.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
+/**
+ * 
+ */
+import { AlumnoI } from 'src/app/model/alumno';
+import { ApiDjangoService } from 'src/app/services/api-django.service';
 
 @Component({
   selector: 'app-bie-alum',
@@ -22,23 +27,35 @@ export class BieAlumPage implements OnInit {
     pass: '',
     tipo: null,
   };
+
+  /** */
+  alumno: AlumnoI = {
+    rut: '',
+    nombre: '',
+    apellido: '',
+    password: '',
+  };
+  array_alum: AlumnoI[];
+
   usuarioid = null;
   
   constructor(
     private apiService: ApiService,
     private loading: LoadingController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private api_django_service:ApiDjangoService,
     ) {}
 
   ngOnInit():void {
     this.usuarioid = this.route.snapshot.params['id'];
-    this.cargarUsuario();
+    this.cargarAlumno();
 
     this.apiService.getTodos().subscribe( resp=>{
       this.usuarios = resp;
     })
   }
 
+/*
   async cargarUsuario() {
     const loading = await this.loading.create({
       message: 'Cargando...'
@@ -49,5 +66,18 @@ export class BieAlumPage implements OnInit {
       this.user=resp;
     });
   }
+*/
+
+async cargarAlumno() {
+  const loading = await this.loading.create({
+    message: 'Cargando...'
+  });
+  await loading.present();
+  this.api_django_service.getAlumno(this.usuarioid).subscribe(resp => {
+    loading.dismiss();
+    this.array_alum = resp;
+  });
+}
+
 
 }

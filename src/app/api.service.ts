@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
+
   private usuario: Observable<Usuario[]>;
   private usuariosCollection: AngularFirestoreCollection<Usuario>;
 
@@ -54,5 +55,4 @@ export class ApiService {
   updateUsuario(nvo_usuario: Usuario, id:string){
     return this.usuariosCollection.doc(id).update(nvo_usuario);
   }
-
 }

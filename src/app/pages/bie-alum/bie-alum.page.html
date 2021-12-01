@@ -10,8 +10,8 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
-        <h3 style="text-align: center;">¡Bienvenido(a) {{user.nombre}}!</h3>
+      <ion-card-title *ngFor="let item of array_alum">
+        <h3 style="text-align: center; font-family:Arial, Helvetica, sans-serif">¡Bienvenido(a) {{item.nombre}}!</h3>
       </ion-card-title>
     </ion-card-header>
   </ion-card>

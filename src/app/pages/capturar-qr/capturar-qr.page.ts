@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from '@ionic/angular';
 
+import { ApiDjangoService } from 'src/app/services/api-django.service';
 @Component({
   selector: 'app-capturar-qr',
   templateUrl: './capturar-qr.page.html',
@@ -11,7 +12,8 @@ export class CapturarQrPage implements OnInit {
 
   constructor(
     private barcodeScan: BarcodeScanner,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private apiDjango: ApiDjangoService
   ) {}
 
   ngOnInit() {
@@ -30,4 +32,5 @@ export class CapturarQrPage implements OnInit {
     });
     await toast.present();
   }
+  
 }
