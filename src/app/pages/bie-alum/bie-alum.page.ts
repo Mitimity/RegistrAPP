@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
  * 
  */
 import { AlumnoI } from 'src/app/model/alumno';
+import { AsistenciaI } from 'src/app/model/asistencia';
+import { CursoI } from 'src/app/model/curso';
 import { ApiDjangoService } from 'src/app/services/api-django.service';
 
 @Component({
@@ -21,63 +23,43 @@ import { ApiDjangoService } from 'src/app/services/api-django.service';
 export class BieAlumPage implements OnInit {
 
   /* Alumnos */
-  usuarios: Usuario[];
-  user: Usuario = {
-    nombre: '',
-    pass: '',
-    tipo: null,
-  };
 
-  /** */
-  alumno: AlumnoI = {
-    rut: '',
-    nombre: '',
-    apellido: '',
-    password: '',
-  };
   array_alum: AlumnoI[];
+  array_curso: CursoI[];
 
   usuarioid = null;
-  
+
   constructor(
     private apiService: ApiService,
     private loading: LoadingController,
     private route: ActivatedRoute,
-    private api_django_service:ApiDjangoService,
-    ) {}
+    private api_django_service: ApiDjangoService,
+  ) { }
 
-  ngOnInit():void {
+  ngOnInit() {
     this.usuarioid = this.route.snapshot.params['id'];
     this.cargarAlumno();
-
-    this.apiService.getTodos().subscribe( resp=>{
-      this.usuarios = resp;
-    })
+    this.cargarClase();
   }
 
-/*
-  async cargarUsuario() {
+  async cargarAlumno() {
     const loading = await this.loading.create({
       message: 'Cargando...'
     });
     await loading.present();
-    this.apiService.getUno(this.usuarioid).subscribe(resp => {
+    this.api_django_service.getAlumno(this.usuarioid).subscribe(resp => {
       loading.dismiss();
-      this.user=resp;
+      this.array_alum = resp;
     });
   }
-*/
-
-async cargarAlumno() {
-  const loading = await this.loading.create({
-    message: 'Cargando...'
-  });
-  await loading.present();
-  this.api_django_service.getAlumno(this.usuarioid).subscribe(resp => {
-    loading.dismiss();
-    this.array_alum = resp;
-  });
-}
-
-
+  async cargarClase() {
+    const loading = await this.loading.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+    this.api_django_service.getCursos().subscribe(resp => {
+      loading.dismiss();
+      this.array_curso = resp;
+    });
+  }
 }

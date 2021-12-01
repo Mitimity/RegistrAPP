@@ -24,6 +24,10 @@ export class ApiDjangoService {
   ruta_profe:string="http://127.0.0.1:8000/api/profe/"
   /* Alumno */
   ruta_alumno:string="http://127.0.0.1:8000/api/alum/"
+  /*  */
+  ruta_curso:string="http://127.0.0.1:8000/api/cursos/"
+  /*  */
+  ruta_asistencia:string="http://127.0.0.1:8000/api/asistencia/"
 
   constructor(private http: HttpClient) { }
 
@@ -34,5 +38,13 @@ export class ApiDjangoService {
   getAlumno(id):Observable<any>{
     return this.http.post(this.ruta_alumno+id,this.httpOptions);
   }
-  
+  getCurso(id):Observable<any>{
+    return this.http.post(this.ruta_curso+id,this.httpOptions);
+  }
+  getCursos():Observable<any>{
+    return this.http.post(this.ruta_curso,this.httpOptions);
+  }
+  getAsistencia(id):Observable<any>{
+    return this.http.post(this.ruta_asistencia+id,this.httpOptions);
+  }
 }

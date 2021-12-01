@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 /* django */
 import { ProfesorI } from 'src/app/model/profesor';
 import { ApiDjangoService } from 'src/app/services/api-django.service';
+import { CursoI } from 'src/app/model/curso';
 
 @Component({
   selector: 'app-bie-prof',
@@ -25,6 +26,7 @@ export class BieProfPage implements OnInit {
     password: '',
   };
   array_profe: ProfesorI[];
+  array_curso: CursoI[];
 /*
   use: Usuario = {
     nombre: '',
@@ -45,6 +47,7 @@ export class BieProfPage implements OnInit {
   ngOnInit() {
     this.usuarioid = this.route.snapshot.params['id'];
     this.cargarProfe();
+    this.cargarClase();
   }
   /*    FIREBASE
   async cargarUsuario() {
@@ -66,7 +69,17 @@ export class BieProfPage implements OnInit {
     this.api_django_service.getProfesor(this.usuarioid).subscribe(resp => {
       loading.dismiss();
       this.array_profe = resp;
-      console.log(this.array_profe)
+    });
+  }
+
+  async cargarClase() {
+    const loading = await this.loading.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+    this.api_django_service.getCurso(this.usuarioid).subscribe(resp => {
+      loading.dismiss();
+      this.array_curso = resp;
     });
   }
 }

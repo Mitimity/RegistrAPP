@@ -21,12 +21,8 @@
         <!-- Ingreso de seccion -->
         <ion-item>
           <ion-label>Sección</ion-label>
-          <ion-select value="1" okText="Aceptar" cancelText="Cancelar">
-            <ion-select-option value="1">PGY4121-001D</ion-select-option>
-            <ion-select-option value="2">PGY4121-002D</ion-select-option>
-            <ion-select-option value="3">PGY4121-003D</ion-select-option>
-            <ion-select-option value="4">PGY4121-004D</ion-select-option>
-            <ion-select-option value="5">PGY4121-005D</ion-select-option>
+          <ion-select value="1" okText="Aceptar" cancelText="Cancelar" >
+            <ion-select-option *ngFor="let item of array_curso" value="{{item.idCurso}}">{{item.nombre}}</ion-select-option>
           </ion-select>
         </ion-item>
 
