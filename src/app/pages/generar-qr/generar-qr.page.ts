@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 import { ToastController } from '@ionic/angular';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 
