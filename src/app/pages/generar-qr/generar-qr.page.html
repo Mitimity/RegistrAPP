@@ -17,9 +17,10 @@
 
     <!-- Cuerpo de carta -->
     <ion-card-content>
-      <ion-list>
+      <ion-list style="padding: 10px;">
         <!-- Ingreso de seccion -->
         <ion-item>
+          <ion-label>Curso</ion-label>
           <ion-select [(ngModel)]="valor" value="1" okText="Listo" cancelText="Cancelar">
             <ion-select-option *ngFor="let a of array_curso" value="{{a.idCurso}}">{{a.nombre}}</ion-select-option>
           </ion-select>
@@ -32,9 +33,8 @@
           </ion-datetime>
         </ion-item>
 
-        <ion-item>
-          <ion-button (click)="scanerCode()">Generar QR</ion-button>
-        </ion-item>
+        <ion-button shape="round" size="medium" (click)="scanerCode()">Generar QR</ion-button>
+
 
       </ion-list>
     </ion-card-content>
@@ -47,16 +47,16 @@
     <ion-card *ngIf="qrData">
       <!-- Cabecera de carta -->
       <ion-card-header>
-        <ion-card-title>Generar código QR</ion-card-title>
+        <ion-card-title>Código QR</ion-card-title>
       </ion-card-header>
       <!-- Cuerpo de carta -->
       <ion-card-content>
-        <ion-item>
           <ngx-qrcode [elementType]="elementType" [value]="qrData"></ngx-qrcode>
-        </ion-item>
+        <!-- 
         <ion-item>
           <ion-input type="text" pleaceholder="ingrese codigo QR" [(ngModel)]="qrData"></ion-input>
         </ion-item>
+        -->
       </ion-card-content>
     </ion-card>
   </ng-template>
