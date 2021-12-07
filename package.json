@@ -27,6 +27,7 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/cli": "^6.17.1",
     "@ionic/storage": "^3.0.6",
+    "@monument/store": "^0.15.2",
     "angularfire2": "^5.4.2",
     "firebase": "^7.24.0",
     "ngx-qrcode2": "^9.0.0",

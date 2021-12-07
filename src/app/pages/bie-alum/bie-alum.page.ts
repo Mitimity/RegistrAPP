@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 /* importar usuario  */
-import { Usuario } from '../model/usuario';
-
-import { ApiService } from 'src/app/api.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
-/**
- * 
- */
+/*  */
 import { AlumnoI } from 'src/app/model/alumno';
 import { AsistenciaI } from 'src/app/model/asistencia';
 import { CursoI } from 'src/app/model/curso';
@@ -30,7 +25,6 @@ export class BieAlumPage implements OnInit {
   usuarioid = null;
 
   constructor(
-    private apiService: ApiService,
     private loading: LoadingController,
     private route: ActivatedRoute,
     private api_django_service: ApiDjangoService,

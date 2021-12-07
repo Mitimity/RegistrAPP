@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 //librerias
-
-import { Usuario } from '../model/usuario';
-import { ApiService } from 'src/app/api.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
@@ -16,7 +13,7 @@ import { ToastController } from '@ionic/angular';
 export class CamContrasPage implements OnInit {
   usuario: string;
   pass: string;
-
+/*
   user: Usuario = {
     nombre: '',
     pass: '',
@@ -24,9 +21,8 @@ export class CamContrasPage implements OnInit {
   };
 
   array_usuarios: Usuario[];
-
+*/
   constructor(
-    private api: ApiService,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private toastCrtl: ToastController
@@ -36,30 +32,34 @@ export class CamContrasPage implements OnInit {
   }
 
   validar() {
-    this.api.getTodos().subscribe(resp => {
-      this.array_usuarios = resp;
+    console.log('Falta editar');
 
-      this.array_usuarios.forEach(item => {
-        if (item.nombre == this.usuario) {
-          this.user.nombre = item.nombre;
-          this.user.pass = this.pass;
-          this.user.tipo = item.tipo;
+    /*
+this.api.getTodos().subscribe(resp => {
+  this.array_usuarios = resp;
 
-          this.updateUsuario(item.id);
-        }
-      });
-    });
-  };
-  async updateUsuario(id: string) {
-      const loading = await this.loadingCtrl.create({
-        message: "Actualizando..."
-      });
-      await loading.present();
-      
-      this.api.updateUsuario(this.user, id).then(() => {
-        loading.dismiss();
-        this.navCtrl.navigateForward("/");
-      });
+  this.array_usuarios.forEach(item => {
+    if (item.nombre == this.usuario) {
+      this.user.nombre = item.nombre;
+      this.user.pass = this.pass;
+      this.user.tipo = item.tipo;
+
+      this.updateUsuario(item.id);
     }
-
+  });
+});
+};
+async updateUsuario(id: string) {
+  const loading = await this.loadingCtrl.create({
+    message: "Actualizando..."
+  });
+  await loading.present();
+  
+  this.api.updateUsuario(this.user, id).then(() => {
+    loading.dismiss();
+    this.navCtrl.navigateForward("/");
+  });
+}
+*/
   }
+}

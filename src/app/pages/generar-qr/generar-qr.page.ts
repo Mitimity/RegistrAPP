@@ -10,12 +10,15 @@ import { ApiDjangoService } from 'src/app/services/api-django.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-generar-qr',
   templateUrl: './generar-qr.page.html',
   styleUrls: ['./generar-qr.page.scss'],
 })
 export class GenerarQRPage implements OnInit {
+  date:Date;
+  //
   array_curso: CursoI[];
   usuarioid = null;
   //indicar direccion o elemento a generar como codigo QR
@@ -29,13 +32,15 @@ export class GenerarQRPage implements OnInit {
               private base64ToGallery : Base64ToGallery,
               private api_django_service: ApiDjangoService,
               private route: ActivatedRoute,
-              private loading: LoadingController,) { }
+              private loading: LoadingController,
+              ) {}
 
 
   ngOnInit() {
     this.usuarioid = this.route.snapshot.params['id'];
     this.cargarClase();
   }
+
   async cargarClase() {
     const loading = await this.loading.create({
       message: 'Cargando...'

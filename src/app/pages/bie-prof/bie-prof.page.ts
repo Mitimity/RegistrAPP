@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 /** */
-import { Usuario } from '../model/usuario';
-import { ApiService } from 'src/app/api.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
@@ -27,17 +25,10 @@ export class BieProfPage implements OnInit {
   };
   array_profe: ProfesorI[];
   array_curso: CursoI[];
-/*
-  use: Usuario = {
-    nombre: '',
-    pass: '',
-    tipo: null,
-  };
-  */
+
   usuarioid = null;
 
   constructor(
-    private api_service: ApiService,
     private navCtrl: NavController,
     private loading: LoadingController,
     private route: ActivatedRoute,
@@ -49,18 +40,7 @@ export class BieProfPage implements OnInit {
     this.cargarProfe();
     this.cargarClase();
   }
-  /*    FIREBASE
-  async cargarUsuario() {
-    const loading = await this.loading.create({
-      message: 'Cargando...'
-    });
-    await loading.present();
-    this.apiService.getUno(this.usuarioid).subscribe(resp => {
-      loading.dismiss();
-      this.use=resp;
-    });
-  }
-  */
+
   async cargarProfe() {
     const loading = await this.loading.create({
       message: 'Cargando...'
