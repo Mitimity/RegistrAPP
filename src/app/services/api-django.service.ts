@@ -15,6 +15,7 @@ export class ApiDjangoService {
     headers: new HttpHeaders({
       'Content-Type':'application/json',
       'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Methods':'GET,HEAD,OPTIONS,POST,PUT',
     })
   }
 
@@ -28,6 +29,8 @@ export class ApiDjangoService {
   ruta_curso:string="http://127.0.0.1:8000/api/cursos/"
   /*  */
   ruta_asistencia:string="http://127.0.0.1:8000/api/asistencia/"
+  /* Guardar asistencia */
+  ruta_grabar_asistencia:string="http://127.0.0.1:8000/api/grabar_asistencia/"
 
   constructor(private http: HttpClient) { }
 
@@ -46,5 +49,12 @@ export class ApiDjangoService {
   }
   getAsistencia(id):Observable<any>{
     return this.http.post(this.ruta_asistencia+id,this.httpOptions);
+  }
+  //Grabar asistencia
+  addAsistencia(asistencia):Observable<any>{
+    return this.http.post(this.ruta_grabar_asistencia,asistencia,this.httpOptions).pipe(retry(2));
+  }
+  getConteo():Observable<any>{
+    return this.http.post("http://127.0.0.1:8000/api/conteo/",this.httpOptions)
   }
 }

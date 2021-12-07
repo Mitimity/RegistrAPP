@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="text-align: center;"s>
+<ion-content style="text-align: center;">
   <!-- Carta para informacion de codigo qr -->
   <ion-card>
     <!-- Cabecera de carta -->
@@ -20,33 +20,45 @@
       <ion-list>
         <!-- Ingreso de seccion -->
         <ion-item>
-          <ion-label>Sección</ion-label>
-          <ion-select value="1" okText="Aceptar" cancelText="Cancelar" >
-            <ion-select-option *ngFor="let item of array_curso" value="{{item.idCurso}}">{{item.nombre}}</ion-select-option>
+          <ion-select [(ngModel)]="valor" value="1" okText="Listo" cancelText="Cancelar">
+            <ion-select-option *ngFor="let a of array_curso" value="{{a.idCurso}}">{{a.nombre}}</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
+          <!--10 Dec 2021 10:30-->
           <ion-label>Fecha</ion-label>
-          <ion-datetime displayFormat="D MMM YYYY H:mm" min="2021" max="2100" value="10 Dec 2021 10:30"></ion-datetime>
+          <ion-datetime displayFormat="D MMM YYYY" min="2021" max="2100" value="10 Dec 2021" [(ngModel)]="date">
+          </ion-datetime>
         </ion-item>
+
+        <ion-item>
+          <ion-button (click)="scanerCode()">Generar QR</ion-button>
+        </ion-item>
+
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <!-- Carta para codigo qr -->
-  <ion-card *ngIf="qrData">
-    <!-- Cabecera de carta -->
-    <ion-card-header>
-      <ion-card-title>Generar código QR</ion-card-title>
-    </ion-card-header>
-    <!-- Cuerpo de carta -->
-    <ion-card-content>
-      <ion-item>
-        <ngx-qrcode [elementType]="elementType" [value]="qrData"></ngx-qrcode>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" pleaceholder="ingrese codigo QR" [(ngModel)]="qrData"></ion-input>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <!--MOSTRAR QR-->
+  <div *ngIf="mostrar==1; else elseBlock"> </div>
+
+  <ng-template #elseBlock>
+    <!-- Carta para codigo qr -->
+    <ion-card *ngIf="qrData">
+      <!-- Cabecera de carta -->
+      <ion-card-header>
+        <ion-card-title>Generar código QR</ion-card-title>
+      </ion-card-header>
+      <!-- Cuerpo de carta -->
+      <ion-card-content>
+        <ion-item>
+          <ngx-qrcode [elementType]="elementType" [value]="qrData"></ngx-qrcode>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" pleaceholder="ingrese codigo QR" [(ngModel)]="qrData"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
 </ion-content>

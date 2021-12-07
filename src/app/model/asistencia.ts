@@ -1,7 +1,6 @@
 export interface AsistenciaI{
-    idAsistencia: Number;
     rutProfesor: string;
-    fecha: Date;
-    hora: Date;
     rutAlumno: string;
+    curso: number;
+    fecha: Date;
 }

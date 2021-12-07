@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 import { ApiDjangoService } from 'src/app/services/api-django.service';
 @Component({
@@ -9,19 +10,24 @@ import { ApiDjangoService } from 'src/app/services/api-django.service';
   styleUrls: ['./capturar-qr.page.scss'],
 })
 export class CapturarQrPage implements OnInit {
+  
+  usuarioid = null;
 
   constructor(
     private barcodeScan: BarcodeScanner,
+    private route: ActivatedRoute,
     private toastCtrl: ToastController,
     private apiDjango: ApiDjangoService
   ) {}
 
   ngOnInit() {
-    this.scanner();
+    this.usuarioid = this.route.snapshot.params['id'];
+    //this.scanner();
   }
   scanner() {
     this.barcodeScan.scan().then(barcodeData => {
-      this.presentar(barcodeData.text);
+      console.log(barcodeData.text);
+      //this.presentar(barcodeData.text);
     });
   }
   async presentar(mensaje: any) {
@@ -33,4 +39,26 @@ export class CapturarQrPage implements OnInit {
     await toast.present();
   }
   
+  //
+  rutProfesor: string;
+  curso: number;
+  fecha: Date;
+
+  grabar(){
+    var asis={
+      "rutProfesor": this.rutProfesor,
+      "rutAlumno": this.usuarioid,
+      "curso": this.curso,
+      "fecha": this.fecha
+    }
+    console.log(asis);
+    this.apiDjango.addAsistencia(asis).subscribe(
+      (success)=>{
+        console.log(success);
+      },
+      (e)=>{
+        console.log(e);
+      }
+    );
+  }
 }
