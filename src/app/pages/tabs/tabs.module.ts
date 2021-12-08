@@ -21,7 +21,11 @@ const routes: Routes=[{
     {
       path: 'generar-qr/:id',
       loadChildren: () => import('../generar-qr/generar-qr.module').then( m => m.GenerarQRPageModule)
-    }
+    },
+    {
+      path: 'listado-asis-profe/:id',
+      loadChildren: () => import('../listado-asis-profe/listado-asis-profe.module').then( m => m.ListadoAsisProfePageModule)
+    },
   ],
 }];
 @NgModule({

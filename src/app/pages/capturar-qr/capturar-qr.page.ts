@@ -27,6 +27,9 @@ export class CapturarQrPage implements OnInit {
   scanner() {
     this.barcodeScan.scan().then(barcodeData => {
       console.log(barcodeData.text);
+      var datos= JSON.parse(barcodeData.text)
+      datos["rutAlumno"]=(JSON.parse(this.usuarioid))
+      console.log(datos)
       //this.presentar(barcodeData.text);
     });
   }

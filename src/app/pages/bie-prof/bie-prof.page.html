@@ -22,15 +22,14 @@
     <ion-card-content>
       <ion-list>
         <ion-list-header>
-          <ion-label>Las secciones de hoy</ion-label>
-          <ion-label style="text-align: end;">QR generado</ion-label>
+          <ion-label>Secciones</ion-label>
+          <ion-label style="text-align: end;">Lista de asistencia</ion-label>
         </ion-list-header>
 
-        <ion-item *ngFor="let item of array_curso">
-          <ion-label>{{item.nombre}}</ion-label>
-          <ion-icon name="close-outline"></ion-icon>
+        <ion-item *ngFor="let curso of array_curso">
+          <ion-label>{{curso.nombre}}</ion-label>
+          <ion-button (click)="listar(curso.idCurso)">Listar</ion-button>
         </ion-item>
-
       </ion-list>
     </ion-card-content>
   </ion-card>

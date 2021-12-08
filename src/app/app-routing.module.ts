@@ -43,6 +43,11 @@ const routes: Routes = [
     path: '**',
     loadChildren: () => import('./pages/p404/p404.module').then( m => m.P404PageModule)
   },
+  {
+    path: 'listado-asis-profe',
+    loadChildren: () => import('./pages/listado-asis-profe/listado-asis-profe.module').then( m => m.ListadoAsisProfePageModule)
+  },
+
 ];
 
 @NgModule({

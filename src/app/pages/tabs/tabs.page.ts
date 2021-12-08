@@ -32,5 +32,7 @@ export class TabsPage implements OnInit {
   opcion3() {
     this.navCtrl.navigateForward(['/home']);
   };
-
+  opcion4() {
+    this.navCtrl.navigateForward(['/tabs/' + this.usuarioid + '/listado-asis-profe/', this.usuarioid]);
+  };
 }
