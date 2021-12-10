@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div>RegistrAPP</div>
+      <div style="font-size: small; font-style: italic;">(Vista Alumno ~ Clase: {{curso}})</div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-label>Alumno: {{nombre}}</ion-label>    
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngFor="let item of arrayAsis">
+        <div *ngIf="item.curso==curso"> 
+          <ion-item>
+            <ion-label>Fecha de la clase: {{item.fecha}}</ion-label>
+          </ion-item>
+        </div>
+
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

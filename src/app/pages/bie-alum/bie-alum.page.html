@@ -27,7 +27,7 @@
 
         <ion-item *ngFor="let item of array_curso">
           <ion-label>{{item.nombre}}</ion-label>
-          <ion-icon name="close-outline"></ion-icon>
+          <ion-button (click)="listar(item.idCurso)">Mostrar</ion-button>
         </ion-item>
         
       </ion-list>

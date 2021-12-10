@@ -29,6 +29,9 @@ export class ApiDjangoService {
   ruta_curso:string="http://127.0.0.1:8000/api/cursos/"
   /*  */
   ruta_asistencia:string="http://127.0.0.1:8000/api/asistencia/"
+
+  ruta_asistencia_alum:string="http://127.0.0.1:8000/api/asistenciaAlum/"
+
   /* Guardar asistencia */
   ruta_grabar_asistencia:string="http://127.0.0.1:8000/api/grabar_asistencia/"
 
@@ -50,6 +53,10 @@ export class ApiDjangoService {
   getAsistencia(id):Observable<any>{
     return this.http.post(this.ruta_asistencia+id,this.httpOptions);
   }
+  getAsistenciaAlum(id):Observable<any>{
+    return this.http.post(this.ruta_asistencia_alum+id,this.httpOptions);
+  }
+  
   //Grabar asistencia
   addAsistencia(asistencia):Observable<any>{
     return this.http.post(this.ruta_grabar_asistencia,asistencia,this.httpOptions).pipe(retry(2));

@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'listado-asis-profe',
     loadChildren: () => import('./pages/listado-asis-profe/listado-asis-profe.module').then( m => m.ListadoAsisProfePageModule)
+  },  {
+    path: 'listado-asis-alum',
+    loadChildren: () => import('./pages/listado-asis-alum/listado-asis-alum.module').then( m => m.ListadoAsisAlumPageModule)
   },
+
 
 ];
 

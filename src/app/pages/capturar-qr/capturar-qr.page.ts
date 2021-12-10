@@ -22,7 +22,7 @@ export class CapturarQrPage implements OnInit {
 
   ngOnInit() {
     this.usuarioid = this.route.snapshot.params['id'];
-    //this.scanner();
+    this.scanner();
   }
   scanner() {
     this.barcodeScan.scan().then(barcodeData => {

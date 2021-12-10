@@ -14,8 +14,9 @@ import { ProfesorI } from 'src/app/model/profesor';
 })
 export class ListadoAsisProfePage implements OnInit {
   //
-  curso:number;
-  rutProfe:string;
+  curso: number;
+  rutProfe: string;
+  nombre_profe: string;
   arrayAsis: AsistenciaI[];
   arrayProfe: ProfesorI[];
 
@@ -27,29 +28,14 @@ export class ListadoAsisProfePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    var datosC = JSON.parse(localStorage.getItem("datos_curso"));
+    this.curso = datosC.idCurso;
+    this.nombre_profe = datosC.nombre_profe;
     this.cargarAsis();
-    var datosC=JSON.parse(localStorage.getItem("datos_curso"))
-    this.curso=datosC.idCurso;
   }
-  async cargarAsis() {
-    const loading = await this.loading.create({
-      message: 'Cargando...'
-    });
-    await loading.present();
+  cargarAsis() {
     this.api_django_service.getAsistencia(this.curso).subscribe(resp => {
-      loading.dismiss();
       this.arrayAsis = resp;
-    });
-  }
-  
-  async cargarProfe() {
-    const loading = await this.loading.create({
-      message: 'Cargando...'
-    });
-    await loading.present();
-    this.api_django_service.getProfesor(this.rutProfe).subscribe(resp => {
-      loading.dismiss();
-      this.arrayProfe = resp.nombre;
-    });
+    })
   }
 }

@@ -19,6 +19,10 @@ const routes: Routes=[{
       loadChildren: () => import('../bie-alum/bie-alum.module').then( m => m.BieAlumPageModule)
     },
     {
+      path: 'listado-asis-alum/:id',
+      loadChildren: () => import('../listado-asis-alum/listado-asis-alum.module').then( m => m.ListadoAsisAlumPageModule)
+    },
+    {
       path: 'capturar-qr/:id',
       loadChildren: () => import('../capturar-qr/capturar-qr.module').then( m => m.CapturarQrPageModule)
     }
